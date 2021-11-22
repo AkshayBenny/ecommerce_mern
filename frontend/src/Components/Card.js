@@ -1,5 +1,6 @@
 import React from 'react'
 import { products } from '../products'
+import Rating from './Rating'
 
 function Card() {
   return (
@@ -20,9 +21,10 @@ function Card() {
                 {item.name}
               </div>
               <div className='py-3'>
-                <p className='font-bold block text-gray-500 text-sm'>
-                  {item.rating} from {item.numReviews} reviews
-                </p>
+                <Rating
+                  value={item.rating}
+                  text={`${item.numReviews} reviews`}
+                />
               </div>
               <div className='text-2xl md:text-3xl  text-gray-700 pt-6'>
                 {item.price}$
