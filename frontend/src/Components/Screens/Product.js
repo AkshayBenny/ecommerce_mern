@@ -1,9 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { products } from '../../products'
+import Rating from '../Rating'
 
-function Product() {
+function Product({ match }) {
+  const product = products.find((item) => item._id === match.params.id)
   return (
     <div>
-      <h1>Product Screen</h1>
+      <img src={product.image} alt='product' />
+      <p>{product.name}</p>
+      <p>{product.brand}</p>
+      <p>{product.category}</p>
+      <p>{product.description}</p>
+      <p>{product.rating}</p>
     </div>
   )
 }
