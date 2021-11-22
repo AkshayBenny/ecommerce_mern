@@ -5,15 +5,15 @@ import Rating from './Rating'
 function Card() {
   return (
     <>
-      {products.map((item, index) => {
+      {products.map((item) => {
         return (
           <div
-            className='card hover:shadow-md transition ease-in duration-300'
-            key={index}
+            className='card hover:shadow-md transition ease-in duration-300 p-4'
+            key={item._id}
           >
             <img
               src={item.image}
-              className='w-full h-60 object-cover'
+              className='w-full h-60 object-cover rounded-xl'
               alt='product'
             />
             <div className='p-4'>
@@ -27,7 +27,7 @@ function Card() {
                 />
               </div>
               <div className='text-2xl md:text-3xl  text-gray-700 pt-6'>
-                {item.price}$
+                {item.price} $
               </div>
             </div>
           </div>
