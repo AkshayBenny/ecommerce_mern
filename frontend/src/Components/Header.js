@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <div className='bg-gray-800 flex items-center justify-between h-16 md:h-20'>
-      <div className='text-gray-50 font-bold font text-2xl md:text-4xl'>
+      <div className='text-gray-50 font-bold font text-2xl md:text-4xl pl-60'>
         <Link className='pl-6 uppercase' to='/'>
           ProShop
         </Link>
       </div>
-      <div>
+      <div className='pr-60'>
         <ul className='uppercase text-gray-400 flex'>
-          <li className='px-2'>
+          <li className='pr-16'>
             <Link to='/cart'>Cart</Link>
           </li>
-          <li className='pr-6 pl-2'>
+          <li className=''>
             <Link to='/login'>Login</Link>
           </li>
         </ul>
