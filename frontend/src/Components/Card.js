@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../products'
+import axios from 'axios'
 import Rating from './Rating'
 
 function Card() {
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('./api/products')
+      setProducts(data)
+    }
+    fetchProducts()
+  }, [])
   return (
     <>
       {products.map((item) => {

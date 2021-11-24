@@ -1,0 +1,32 @@
+{
+  "name": "ecommerce_mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "yarn --cwd frontend start",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkshayBenny/ecommerce_mern.git"
+  },
+  "author": "Akshay Benny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkshayBenny/ecommerce_mern/issues"
+  },
+  "homepage": "https://github.com/AkshayBenny/ecommerce_mern#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "colors": "^1.4.0",
+    "concurrently": "^6.4.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "nodemon": "^2.0.15"
+  }
+}

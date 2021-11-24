@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../../products'
 import Rating from '../Rating'
+import axios from 'axios'
 
 function Product({ match }) {
-  const product = products.find((item) => item._id === match.params.id)
+  const [product, setProduct] = useState({})
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`)
+      setProduct(data)
+    }
+    fetchProduct()
+  }, [match])
+
   return (
-    <div className=' md:grid md:grid-cols-3 gap-x-4 px-60 pt-20'>
+    <div className=' md:grid md:grid-cols-3 gap-x-4 md:px-60 md:pt-20'>
       <div className='bg-gray-500'>
         <img
           src={product.image}
@@ -14,12 +22,11 @@ function Product({ match }) {
           className='object-cover h-96 md:h-full w-screen'
         />
       </div>
-      <div className='p-6 '>
+      <div className='p-6'>
         <p className='font-light text-3xl md:font-thin md:text-6xl  pb-10 md:pb-20'>
           {product.name}
         </p>
         <div className='border-t-2 border-b-2 py-4'>
-          {' '}
           <Rating
             value={product.rating}
             text={`${product.numReviews} reviews`}
@@ -55,7 +62,10 @@ function Product({ match }) {
         <div className='p-6 flex justify-center items-center border'>
           <div className='flex items-center'>
             <Link to='/cart'>
-              <button className='inline-flex items-center justify-center px-5 py-3  text-base font-medium rounded-md text-white bg-gray-800  mx-6 border-gray-700 border-2'>
+              <button
+                className='inline-flex items-center justify-center px-5 py-3  text-base font-medium rounded-md text-white bg-gray-800  mx-6 border-gray-700 border-2'
+                disabled={product.countInStock === 0}
+              >
                 Add to cart
               </button>
             </Link>
