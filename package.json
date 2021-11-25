@@ -8,7 +8,9 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "yarn --cwd frontend start",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   "homepage": "https://github.com/AkshayBenny/ecommerce_mern#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
