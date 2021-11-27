@@ -5,9 +5,9 @@ import Rating from '../Rating'
 import { listProductDetails } from '../../actions/productActions'
 import Loader from '../Loader'
 import Message from '../Message'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 
-function Product({ match }) {
+function Product({ history, match }) {
   const [qty, setQty] = useState(0)
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
@@ -16,6 +16,9 @@ function Product({ match }) {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
 
+  const addToCartHandler = () => {
+    history.push('/cart/' + match.params.id + '?qty=' + qty)
+  }
   return (
     <>
       {loading ? (
@@ -74,22 +77,44 @@ function Product({ match }) {
                 <p>Select quantity:</p>
               </div>
               <div>
-                <p>{product.countInStock > 0 && (
-
-                )}</p>
+                <p>
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Qty</Col>
+                        <Col>
+                          <Form.Control
+                            as='select'
+                            value={qty}
+                            onChange={(e) => {
+                              setQty(e.target.value)
+                            }}
+                          >
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+                </p>
               </div>
             </div>
 
             <div className='p-6 flex justify-center items-center border'>
               <div className='flex items-center'>
-                <Link to='/cart'>
-                  <button
-                    className='inline-flex items-center justify-center px-5 py-3  text-base font-medium rounded-md text-white bg-gray-800  mx-6 border-gray-700 border-2'
-                    disabled={product.countInStock === 0}
-                  >
-                    Add to cart
-                  </button>
-                </Link>
+                <button
+                  onClick={addToCartHandler}
+                  className='inline-flex items-center justify-center px-5 py-3  text-base font-medium rounded-md text-white bg-gray-800  mx-6 border-gray-700 border-2'
+                  disabled={product.countInStock === 0}
+                >
+                  Add to cart
+                </button>
 
                 <Link to='/'>
                   <p className='inline-flex items-center justify-center px-9 py-3  text-base font-medium rounded-md text-gray-800 bg-white border-gray-700 border-2 box-border  mx-6'>

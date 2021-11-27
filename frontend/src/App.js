@@ -5,8 +5,8 @@ import Header from './Components/Header'
 // import Footer from './Components/Footer'
 import Home from './Components/Screens/Home'
 import Product from './Components/Screens/Product'
-import Cart from './Components/Cart'
 import Login from './Components/Login'
+import Cart from './Components/Screens/Cart'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Route exact path='/' component={Home} />
       <Route path='/product/:id' component={Product} />
-      <Route path='/cart' component={Cart} />
+      <Route path='/cart/:id?' component={Cart} />
       <Route path='/login' component={Login} />
     </Router>
   )
