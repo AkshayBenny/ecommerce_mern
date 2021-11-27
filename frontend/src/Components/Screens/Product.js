@@ -8,7 +8,7 @@ import Message from '../Message'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 
 function Product({ history, match }) {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
   const { product, loading, error } = productDetails
